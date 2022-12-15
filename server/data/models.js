@@ -95,7 +95,7 @@ const Authors = sequelize.define('Author', {
         primaryKey: true,
         autoIncrement: true
 },
-    fullname: {
+    firstname: {
         type: DataTypes.STRING(50),
         allowNull: false
     },
