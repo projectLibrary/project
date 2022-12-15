@@ -1,10 +1,13 @@
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const publicRoutes = require('./apps/routes/loginRegisterRoutes');
+
 // const userRoutes = require('./apps/user/routes');
 const dotEnv = require('dotenv');
 const authMiddleware = require('./middleware/authMiddlware');
 // const cors = require('cors');
+
 
 dotEnv.config();
 
