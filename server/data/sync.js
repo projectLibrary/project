@@ -1,3 +1,4 @@
+
 const {Users,Authors} = require('./models');
 
 // Sync models with database.
@@ -8,3 +9,4 @@ Authors.sync({alter: true});
 //Issuedbooks.sync({alter: true});
  //Latefee.sync({alter: true});
 //Feedback.sync({alter: true});
+

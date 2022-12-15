@@ -1,13 +1,16 @@
 const {Books} = require('../../data/models');
 const ResponseModel = require('../../utilities/responseModel');
+
 const tokenHandlers = require('../../utilities/tokenHandlers');
 const {Authors} = require('../../data/models');
 const {Categories} = require('../../data/models');
 
 
 
+
 // Get all books
 module.exports.getAll = async (req, res) => {
+
     const books = await Books.findAll( );
     res.json(new ResponseModel(books));
 }
@@ -25,10 +28,12 @@ module.exports.addBook = async (req, res) => {
     
         const bookExists = await Books.findOne({where: {bookname: bookname}});
 
+
         if(bookExists){
             return res.status(400)
                 .json(new ResponseModel(null, null, ['Book already exists.']));
         }
+
 
         else{
          var author = await Authors.findOne({where: {firstname:firstname,lastname:lastname}})
@@ -74,5 +79,6 @@ module.exports.deleteBook = async (req, res, next) => {
             }
         });
         res.json(new ResponseModel(bookFromDb));
+
     }
 }
