@@ -1,7 +1,7 @@
-const {Users} = require('../../../data/models');
-const ResponseModel = require('../../../utilities/responseModel');
-const TokenHandlers = require('../../../utilities/tokenHandlers');
-const {Issuedbooks} = require('../../../data/models');
+const {Users} = require('../../data/models');
+const ResponseModel = require('../../utilities/responseModel');
+const TokenHandlers = require('../../utilities/tokenHandlers');
+const {Issuedbooks} = require('../../data/models');
 
 
 // Get user profile
