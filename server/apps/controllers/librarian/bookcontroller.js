@@ -1,4 +1,4 @@
-const {Books} = require('../../data/models');
+const {Books} = require('../../../data/models');
 const ResponseModel = require('../../../utilities/responseModel');
 const ResponseModel = require('../../../utilities/tokenHandlers');
 const {Authors} = require('../../../data/models');
