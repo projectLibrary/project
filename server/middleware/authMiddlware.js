@@ -1,5 +1,5 @@
 const ResponseModel = require('../utilities/responseModel');
-const tokenHandler = require('../utilities/tokenHandler');
+const tokenHandler = require('../utilities/tokenHandlers');
 
 module.exports = (req, res, next) => {
     if(!req.url.startsWith('/api/v1/user')){
