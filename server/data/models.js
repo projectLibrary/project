@@ -7,7 +7,7 @@ const sequelize = new Sequelize({
     dialect: 'mysql',
     host: 'localhost',
     username: 'root',
-    password: 'fida@8918',
+    password: 'Jyothi12!',
     database: 'library'
 });
 
@@ -71,7 +71,7 @@ const Users = sequelize.define('User', {
 });
 
 
-//define Categories
+// //define Categories
 const Categories = sequelize.define('Categorie', {
     id: {
         type: DataTypes.INTEGER,
@@ -141,7 +141,7 @@ categoryId:{
   
 });
 
-//define issued book details
+// //define issued book details
 const Issuedbooks = sequelize.define('Issuedbooks', {
     id: {
         type: DataTypes.INTEGER,
@@ -187,7 +187,7 @@ userId:{
 
 });
 
-//define Latefee
+// //define Latefee
 const Latefee = sequelize.define('Latefee', {
  id: {
         type: DataTypes.INTEGER,
@@ -240,7 +240,7 @@ feedback:{
 
 
 
-//foreign key references for Book
+// //foreign key references for Book
 Authors.hasMany(Books, {
     sourceKey: 'id',
     foreignKey: 'authorId'
