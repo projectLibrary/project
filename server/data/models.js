@@ -7,10 +7,7 @@ const sequelize = new Sequelize({
     dialect: 'mysql',
     host: 'localhost',
     username: 'root',
-
-    password: '0000',
-
-
+    password: 'lokeshlee25@L',
     database: 'library'
 });
 
@@ -95,7 +92,7 @@ const Authors = sequelize.define('Author', {
         primaryKey: true,
         autoIncrement: true
 },
-    fullname: {
+    firstname: {
         type: DataTypes.STRING(50),
         allowNull: false
     },
