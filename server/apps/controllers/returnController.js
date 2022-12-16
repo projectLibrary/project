@@ -46,12 +46,13 @@ module.exports.returnBook = async (req, res, next) => {
     else{
     fine = 0;
     }
+    //latfee db
     var fee= await Latefee.create({
         issuedId:id,
         userId:userId,
         delayDays:days_difference,
         fee:fine
-        
+    
     });
     
     await Books.update(
