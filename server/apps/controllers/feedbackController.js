@@ -1,6 +1,6 @@
 
 const ResponseModel = require('../../utilities/responseModel');
-const { Feedback } = require('../../data/models');
+const { Feedback, Users } = require('../../data/models');
 
 //feedback creation
 module.exports.create = async (req, res) => {
@@ -25,4 +25,12 @@ module.exports.create = async (req, res) => {
 //     const feed = await Feedback.findAll();
 //     res.json(new ResponseModel(feed));
 // }
+
+module.exports.viewfeedback = async (req, res) => {
+    const feed = await Feedback.findAll({
+        include: Users
+    });
+    
+    res.json(new ResponseModel(feed));
+}
 

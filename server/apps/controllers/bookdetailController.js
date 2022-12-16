@@ -11,12 +11,11 @@ module.exports.getAll = async (req, res) => {
     res.json(new ResponseModel(books));
 }
 
-
-// module.exports.getOne = async (req, res) => {
-//     const id = req.params.id;
-//     const books = await Books.findOne({
-//         where: {id: id}
-//     });
-//     res.json(new ResponseModel(books));
-// }
+module.exports.getOne = async (req, res) => {
+    const id = req.params.id;
+    const books = await Books.findOne({
+        where: {id: id}
+    });
+    res.json(new ResponseModel(books));
+}
 

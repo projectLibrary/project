@@ -5,6 +5,6 @@ const {Users,Categories,Authors,Books,Issuedbooks,Latefee,Feedback} = require('.
 //  Categories.sync({alter: true});
 //  Authors.sync({alter: true});
 //Books.sync({alter: true});
- //Issuedbooks.sync({alter: true});
+ Issuedbooks.sync({alter: true});
  //Latefee.sync({alter: true});
-Feedback.sync({alter: true});
+//Feedback.sync({alter: true});

@@ -3,8 +3,6 @@ const ResponseModel = require('../../utilities/responseModel');
 const ResponseModel = require('../../utilities/tokenHandlers');
 const {Authors} = require('../../data/models');
 
-
-
 // Get all books
 module.exports.getAll = async (req, res) => {
     const Books = await Books.findAll( );

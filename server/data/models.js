@@ -167,7 +167,7 @@ expectedreturnDate:{
 },
 returnDate:{
     type:DataTypes.DATEONLY,
-    allowNull:false
+    allowNull:true
 },
 bookId:{
     type:DataTypes.INTEGER,
