@@ -5,21 +5,29 @@ const {Issuedbooks} = require('../../data/models');
 
 
 // Get user profile
-module.exports.getUserProfile = async (req, res) => {
-
-    const Profile = await Users.findOne(
-        { where: 
-            { id:req.user.id}
-        });
-    res.json(new ResponseModel(Profile));
+getUserProfile = async (req, res) => {
+    console.log(req.user);
+    try{
+        const Profile = await Users.findOne(
+            { where: 
+                { id:req.user.id}
+            });
+        res.json(new ResponseModel(Profile));
+    }
+    catch(err){
+        res.send(err);
+    }
 }
 
 // Get user book history
-module.exports.getMyBook = async (req, res) => {
-
+getMyBook = async (req, res) => {
+    
+    console.log(req.user);
     const Mybooks = await Issuedbooks.findAll(
         { where: 
             { userId:req.user.id}
         });
     res.json(new ResponseModel(Mybooks));
 }
+
+module.exports={ getUserProfile, getMyBook}

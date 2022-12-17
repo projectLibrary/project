@@ -3,7 +3,7 @@ const ResponseModel = require('../../utilities/responseModel');
 const tokenHandler = require('../../utilities/tokenHandlers');
 const {Users} = require('../../data/models');
 // Login function.
-module.exports.login = async(req, res) => {
+login = async(req, res) => {
     const {email, password} = req.body;
     
     // Check if user exists.
@@ -28,7 +28,7 @@ module.exports.login = async(req, res) => {
 }
 
 // Register function.
-module.exports.register = async (req, res) => {
+register = async (req, res) => {
     try{
         const {firstname,lastname, email,phone,address,otp,status, password} = req.body;
 
@@ -56,3 +56,5 @@ module.exports.register = async (req, res) => {
         res.status(500).json(new ResponseModel(null, null, ['Unable to create user.']));
     }
 }
+
+module.exports={ login, register}

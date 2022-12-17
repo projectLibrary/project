@@ -14,12 +14,11 @@ const app = express();
 
 
 app.use(cors({origin: '*'}));
-app.use(authMiddleware);
 app.use(bodyParser.json({inflate: true}));
-
-app.use('/api',loginRoutes);
+app.use(authMiddleware);
+app.use('/api/v1',loginRoutes);
 app.use('/api/user',userRoutes);
-app.use('/api/user/librarian', librarianRoutes);
+app.use('/api/user', librarianRoutes);
 
 
 
