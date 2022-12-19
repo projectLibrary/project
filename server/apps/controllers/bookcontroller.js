@@ -18,18 +18,12 @@ addBook = async (req, res) => {
         const {bookname, summary} = req.body;
         const firstname = req.body.firstname;
         const lastname =req.body.lastname;
-        const categoryname=req.body.categoryname
-
-    
-
-    
+        const categoryname=req.body.categoryname;
         const bookExists = await Books.findOne({where: {bookname: bookname}});
-
         if(bookExists){
             return res.status(400)
                 .json(new ResponseModel(null, null, ['Book already exists.']));
         }
-
         else{
          var author = await Authors.findOne({where: {firstname:firstname,lastname:lastname}})
          if(!author){
@@ -47,15 +41,11 @@ addBook = async (req, res) => {
             summary: summary,
             availability:'Available',
             authorId: author.dataValues.id,
-            categoryId:category.dataValues.id
-            
-
+            categoryId:category.dataValues.id    
         });
         res.json(new ResponseModel(Books));
 
     }
-
-
 }
     catch(err){
         console.log(err);
@@ -63,7 +53,7 @@ addBook = async (req, res) => {
     }
 }
 
-
+//delete books 
 deleteBook = async (req, res, next) => {
     let id = req.params.id;
     let bookFromDb = await Books.findByPk(id);
@@ -77,4 +67,13 @@ deleteBook = async (req, res, next) => {
     }
 }
 
-module.exports={ addBook, deleteBook,getAllBooks}
+//get book details
+getOneBookDetails = async (req, res) => {
+    const id = req.params.id;
+    const books = await Books.findOne({
+        where: {id: id}
+    });
+    res.json(new ResponseModel(books));
+}
+
+module.exports={ addBook, deleteBook,getAllBooks,getOneBookDetails}
