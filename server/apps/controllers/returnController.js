@@ -5,21 +5,25 @@ const { Latefee } = require('../../data/models');
 const { Books } = require('../../data/models');
 const { Issuedbooks } = require('../../data/models');
 
-module.exports.returnBook = async (req, res, next) => {
-    
+module.exports.returnBookGet=async (req, res, next) => {
     const id=req.params.id;
+    const Ib = await Issuedbooks.findOne(
+        { where: 
+            { id:id}
+        }); 
+}
+//returning book and generating fine
+module.exports.returnBookPost = async (req, res, next) => {
+    
+    const id=req.body.issuedId;
     const returnDate=req.body.returnDate;
     console.log(returnDate);
     const userId=req.user.id
     
-
     const Ib = await Issuedbooks.findOne(
         { where: 
             { id:id}
         });
-
-        
-    
      await Issuedbooks.update(
             {
                 returnDate:returnDate
@@ -29,8 +33,6 @@ module.exports.returnBook = async (req, res, next) => {
             }
         );
 
-    
-    
     const bookId=Ib.bookId;    
     const expectedreturnDate=Ib.expectedreturnDate;
     var date1 = new Date(expectedreturnDate);
@@ -63,21 +65,23 @@ module.exports.returnBook = async (req, res, next) => {
     
 } 
 
-
+//displaying fine
 module.exports.lateFee = async (req, res, next) => {
-    issuedId=req.params.id;
+    const id=req.params.id
+    console.log("Idddddddd: ", id);
     const fee = await Latefee.findOne(
         { where: 
-            { id:issuedId}
+            { id:id}
         });
     res.json(new ResponseModel(fee));
 
 }
-
-module.exports.payFee = async (req,res,next)=>{
-    const feeId =req.params.id;
-    console.log(feeId)
+//fee payment
+module.exports.lateFeePost = async (req,res,next)=>{
+    const feeId =req.body.id;
+    console.log("id",feeId)
     const isPayed=req.body.isPayed
+    console.log(isPayed);
     await Latefee.update({
         isPayed : isPayed
     },
@@ -86,6 +90,4 @@ module.exports.payFee = async (req,res,next)=>{
             id : feeId
         }
     })
-
-
 }

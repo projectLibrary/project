@@ -4,15 +4,21 @@ const {Issuedbooks} = require('../../data/models');
 const { Books } = require('../../data/models');
 
 module.exports.applyBook = async (req, res, next) => {
-    const bookId = req.params.id;
-    const returnDate = null;
+    const bookId =req.params.id;
+
     //finding count of non-returned books of the user
+    const book= await Books.findOne(
+        {
+            where:{id:bookId}
+        });
+
+    console.log(book.id)
     var Count = await Issuedbooks.count(
         {
             where:
             {
-                id: req.user.id,
-                returnDate: returnDate
+                userId: req.user.id,
+                returnDate: null
             }
         });
         console.log(Count);
@@ -21,7 +27,9 @@ module.exports.applyBook = async (req, res, next) => {
        .json(new ResponseModel((null, null, ['User book limit exceeded'])));
     }    
     else {
-        const { bookname, userCategory, issuedDate, } = req.body;
+        const issuedDate= (new Date());
+        console.log(issuedDate)
+        const  userCategory = req.body.userCategory
         //calculating expected date
         var date = new Date(issuedDate);
         var copy = new Date(date);
@@ -30,7 +38,6 @@ module.exports.applyBook = async (req, res, next) => {
         console.log(copy)
         //adding issuedbook details to the Database
         var ib = await Issuedbooks.create({
-                bookname: bookname,
                 userCategory: userCategory,
                 issuedDate: issuedDate,
                 expectedreturnDate:copy, 
