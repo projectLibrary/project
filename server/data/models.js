@@ -1,4 +1,4 @@
-const {Sequelize , DataTypes} = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 // Importing Sequelize for creating DB and tables
 
 
@@ -17,7 +17,7 @@ const Users = sequelize.define('User', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-},
+    },
 
     firstname: {
         type: DataTypes.STRING(50),
@@ -32,29 +32,29 @@ const Users = sequelize.define('User', {
         type: DataTypes.STRING(50),
         allowNull: false,
         unique: true
- },
+    },
 
     phone: {
         type: DataTypes.STRING(50),
         allowNull: false,
         unique: true
-        },
+    },
 
     address: {
-            type: DataTypes.STRING(100),
-            allowNull: false,
-            unique: false
-            },
+        type: DataTypes.STRING(100),
+        allowNull: false,
+        unique: false
+    },
 
-    otp:{
+    otp: {
         type: DataTypes.INTEGER,
-        allowNull:false,
+        allowNull: false,
 
     },
 
-    status:{
-        type:DataTypes.STRING,
-        allowNull:false
+    status: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
 
     password: {
@@ -66,7 +66,7 @@ const Users = sequelize.define('User', {
         type: DataTypes.STRING(10),
         allowNull: false,
         defaultValue: 'user'
-        }
+    }
 
 });
 
@@ -77,7 +77,7 @@ const Categories = sequelize.define('Categorie', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-},
+    },
     name: {
         type: DataTypes.STRING(50),
         allowNull: false
@@ -91,7 +91,7 @@ const Authors = sequelize.define('Author', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-},
+    },
     firstname: {
         type: DataTypes.STRING(50),
         allowNull: false
@@ -99,9 +99,9 @@ const Authors = sequelize.define('Author', {
     lastname: {
         type: DataTypes.STRING(50),
         allowNull: true
-},
+    },
 
- });
+});
 
 //define books
 const Books = sequelize.define('Book', {
@@ -109,36 +109,36 @@ const Books = sequelize.define('Book', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-},
-  bookname:{
-    type: DataTypes.STRING(50),
-    allowNull: false,
-    unique:true
-},
- summary:{
-    type:DataTypes.STRING(400),
-    allowNull:false,
+    },
+    bookname: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        unique: true
+    },
+    summary: {
+        type: DataTypes.STRING(400),
+        allowNull: false,
 
- },
- availability:{
-    type:DataTypes.ENUM('Available','Not available'),
-    allowNull:false
- },
-authorId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Authors,
-        key:'id'
+    },
+    availability: {
+        type: DataTypes.ENUM('Available', 'Not available'),
+        allowNull: false
+    },
+    authorId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Authors,
+            key: 'id'
+        }
+    },
+    categoryId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Categories,
+            key: 'id'
+        }
     }
-},
-categoryId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Categories,
-        key:'id'
-    }
-}
-  
+
 });
 
 //define issued book details
@@ -147,90 +147,96 @@ const Issuedbooks = sequelize.define('Issuedbooks', {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-},
-userCategory:{
-    type:DataTypes.ENUM('self','friends','family'),
-    allowNull:false
- },
-issuedDate:{
-    type:DataTypes.DATEONLY,
-    allowNull:false
-},
-expectedreturnDate:{
-    type:DataTypes.DATEONLY,
-    allowNull:false
-},
-returnDate:{
-    type:DataTypes.DATEONLY,
-    allowNull:true
-},
-bookId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Books,
-        key:'id'
-    }
-},
-userId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Users,
-        key:'id'
-    }
-},
+    },
+    userCategory: {
+        type: DataTypes.ENUM('self', 'friends', 'family'),
+        allowNull: false
+    },
+    issuedDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+    expectedreturnDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+    returnDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: true
+    },
+    bookId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Books,
+            key: 'id'
+        }
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Users,
+            key: 'id'
+        }
+    },
 
 
 });
 
 //define Latefee
 const Latefee = sequelize.define('Latefee', {
- id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-},
-issuedId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Issuedbooks,
-        key:'id'
+    },
+    issuedId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Issuedbooks,
+            key: 'id'
+        }
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Users,
+            key: 'id'
+        }
+    },
+    delayDays: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    fee: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+
+    isPayed: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
-},
-userId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Users,
-        key:'id'
-    }
-},
-delayDays:{
-    type:DataTypes.INTEGER,
-    allowNull:true
-},
-fee:{
-    type:DataTypes.INTEGER,
-    allowNull:true
-},
+
 
 });
 
 const Feedback = sequelize.define('Feedback', {
     id: {
-           type: DataTypes.INTEGER,
-           primaryKey: true,
-           autoIncrement: true
-   },
-   userId:{
-    type:DataTypes.INTEGER,
-    references:{
-        model:Users,
-        key:'id'
-    }   
-},
-feedback:{
-    type:DataTypes.STRING(400),
-    allowNull:true
-}
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Users,
+            key: 'id'
+        }
+    },
+    feedback: {
+        type: DataTypes.STRING(400),
+        allowNull: true
+    }
 });
 
 
@@ -242,8 +248,8 @@ Authors.hasMany(Books, {
 });
 
 Books.belongsTo(Authors, {
-    targetKey: 'id',  
-    foreignKey : "authorId",
+    targetKey: 'id',
+    foreignKey: "authorId",
     constraints: true,
     onDelete: 'CASCADE'
 });
@@ -254,8 +260,8 @@ Categories.hasMany(Books, {
 });
 
 Books.belongsTo(Categories, {
-    targetKey: 'id',  
-    foreignKey:'categoryId', 
+    targetKey: 'id',
+    foreignKey: 'categoryId',
     constraints: true,
     onDelete: 'CASCADE'
 });
@@ -268,8 +274,8 @@ Books.hasOne(Issuedbooks, {
 });
 
 Issuedbooks.belongsTo(Books, {
-    targetKey:'id',
-    foreignKey:'bookId',   
+    targetKey: 'id',
+    foreignKey: 'bookId',
     constraints: true,
     onDelete: 'CASCADE'
 });
@@ -281,7 +287,7 @@ Users.hasMany(Issuedbooks, {
 
 Issuedbooks.belongsTo(Users, {
     targetKey: 'id',
-    foreignKey:'userId',     
+    foreignKey: 'userId',
     constraints: true,
     onDelete: 'CASCADE'
 });
@@ -293,8 +299,8 @@ Users.hasMany(Latefee, {
 });
 
 Latefee.belongsTo(Users, {
-    targetKey: 'id', 
-    foreignKey:'userId',
+    targetKey: 'id',
+    foreignKey: 'userId',
     constraints: true,
     onDelete: 'CASCADE'
 });
@@ -306,8 +312,8 @@ Issuedbooks.hasOne(Latefee, {
 });
 
 Latefee.belongsTo(Issuedbooks, {
-    targetKey:'id',
-    foreignKey:'issuedId',
+    targetKey: 'id',
+    foreignKey: 'issuedId',
     constraints: true,
     onDelete: 'CASCADE'
 });
@@ -319,18 +325,18 @@ Users.hasOne(Feedback, {
 });
 
 Feedback.belongsTo(Users, {
-    targetKey:'id',
-    foreignKey:'userId',
+    targetKey: 'id',
+    foreignKey: 'userId',
     constraints: true,
     onDelete: 'CASCADE'
 });
 
 
 
-module.exports.Users=Users;
-module.exports.Categories=Categories;
-module.exports.Authors=Authors;
-module.exports.Books=Books;
-module.exports.Issuedbooks=Issuedbooks;
-module.exports.Latefee=Latefee;
-module.exports.Feedback=Feedback;
+module.exports.Users = Users;
+module.exports.Categories = Categories;
+module.exports.Authors = Authors;
+module.exports.Books = Books;
+module.exports.Issuedbooks = Issuedbooks;
+module.exports.Latefee = Latefee;
+module.exports.Feedback = Feedback;

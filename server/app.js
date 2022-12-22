@@ -18,7 +18,7 @@ app.use(bodyParser.json({inflate: true}));
 app.use(authMiddleware);
 app.use('/api/v1',loginRoutes);
 app.use('/api/user',userRoutes);
-app.use('/api/user', librarianRoutes);
+app.use('/api/user/librarian', librarianRoutes);
 
 
 
