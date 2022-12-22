@@ -148,11 +148,6 @@ const Issuedbooks = sequelize.define('Issuedbooks', {
         primaryKey: true,
         autoIncrement: true
 },
-  bookname:{
-    type: DataTypes.STRING(50),
-    allowNull: false,
-    unique:true
-},
 userCategory:{
     type:DataTypes.ENUM('self','friends','family'),
     allowNull:false
@@ -167,7 +162,7 @@ expectedreturnDate:{
 },
 returnDate:{
     type:DataTypes.DATEONLY,
-    allowNull:false
+    allowNull:true
 },
 bookId:{
     type:DataTypes.INTEGER,

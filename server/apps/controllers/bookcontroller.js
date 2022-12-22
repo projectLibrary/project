@@ -7,10 +7,10 @@ const {Categories} = require('../../data/models');
 
 
 // Get all books
-getAllBooks = async (req, res) => {
-    const books = await Books.findAll( );
-    res.json(new ResponseModel(books));
-}
+// getAllBooks = async (req, res) => {
+//     const books = await Books.findAll( );
+//     res.json(new ResponseModel(books));
+// }
 
 //add books
 addBook = async (req, res) => {
@@ -68,12 +68,6 @@ deleteBook = async (req, res, next) => {
 }
 
 //get book details
-getOneBookDetails = async (req, res) => {
-    const id = req.params.id;
-    const books = await Books.findOne({
-        where: {id: id}
-    });
-    res.json(new ResponseModel(books));
-}
 
-module.exports={ addBook, deleteBook,getAllBooks,getOneBookDetails}
+
+module.exports={ addBook, deleteBook,getAllBooks}

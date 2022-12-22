@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const MovieCard = ({ movie: { bookname, summary, availability } }) => {
+const MovieCard = ({ movie: {id, bookname, summary, availability } }) => {
+  const redirect=()=>{
+    window.Location.href="/bookapply"
+  }
   return (
-    <Link to={'/'}>
-      <div className="movie">
+    <Link to={`/bookapply/${id}`}>
+      <div className="movie" onClick={()=>redirect()}>
         <div>
           <p>{availability}</p>
         </div>

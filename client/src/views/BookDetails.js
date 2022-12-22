@@ -1,77 +1,88 @@
-
 import React from "react";
-import {useState, useEffect} from 'react'
-
-import { getUserProfile } from '../Services/ProfileService'
+import { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  FormGroup,
-  Form,
-  Input,
-  Row,
-  Col
-} from "reactstrap";
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBIcon,
+  MDBBtn,
+  MDBRipple,
+  MDBCardTitle,
+  MDBCardText,
+  MDBInput
+} from "mdb-react-ui-kit";
+
+import { useParams } from "react-router-dom";
+import { getOneBookDetails, applyBook } from '../Services/BookApplyService';
 
 
- 
-let data = {
-  name:"abishek",
-  age:'21'
-}
+function ApplyBook() {
+  const [orderFor, setOrderFor] = useState("1");
+  const [contacts, setContacts] = useState({});
+  const params = useParams();
+  const history = useHistory();
 
-function User() {
-  const [contacts, setContacts] = useState([]);
+ async function saveBookRequest(e) {
+    await applyBook({
+      userCategory: orderFor,
+      bookId: params.id
+    });
+    alert("Applied successfully");
+    history.push('/admin/tables');
+  }
 
- useEffect(() => {
-  getUserProfile().then((data) => {
-    console.log(data);
-          setContacts(data.data.data);
-      });
+  useEffect(() => {
+    getOneBookDetails(params.id).then((data) => {
+      console.log(data.data);
+      setContacts(data.data.data);
+    });
   }, []);
 
-
+  console.log(params);
   return (
     <>
-      <div className="content">
-        <Row>
-         
-          <Col md="8">
-            <Card className="card-user">
-              <CardHeader>
-                <CardTitle tag="h5">Description</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Form>
-                 
-                  <Row>
-                    
-                  </Row>
-                  <Row>
-                    <div className="update ml-auto mr-auto">
-                      <Button
-                        className="btn-round"
-                        color="primary"
-                        type="submit"
-                      >
-                        Update Profile
-                      </Button>
-                    </div>
-                  </Row>
-                </Form>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
+      <MDBCard style={{ width: "400px", marginLeft: "430px", marginTop: "70px", borderRadius: "30px" }}>
+        <MDBRipple rippleColor='light' rippleTag='div' className='bg-image hover-overlay'>
+          <MDBCardImage src='https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/02/attachment_80004080-e1488217702832.jpg?auto=format&q=60&fit=max&w=930' fluid style={{ width: "400px", height: "300px", borderRadius: "10px" }} />
+          <a>
+            <div className='mask' style={{ backgroundColor: 'rgba(251, 251, 251, 0.15)' }}></div>
+          </a>
+        </MDBRipple>
+        <MDBCardBody>
+          <MDBCardTitle>{contacts.bookname}</MDBCardTitle>
+          <MDBCardText>
+            <MDBRow className='mb-4'>
+              {/* <MDBCol>
+              <label>Issued Date</label>    
+              <input type='date' class="form-control" name='issuedDate' id='issuedDate' />
+            </MDBCol> */}
+
+            </MDBRow>
+            <MDBRow className='mb-4'>
+              <label>For whom?</label>
+              <select class="form-select" aria-label="Default select example" name='userCategory' id='userCategory' rows={50} value={orderFor} onChange={(e) => {
+                setOrderFor(e.target.value);
+              }}>
+
+                <option value="1">Self</option>
+                <option value="2">Friend</option>
+                <option value="3">Family</option>
+              </select>
+            </MDBRow>
+
+          </MDBCardText>
+          <MDBBtn
+            style={{ height: "40px", width: "100px" }} onClick={saveBookRequest}>APPLY</MDBBtn>
+        </MDBCardBody>
+      </MDBCard>
     </>
   );
 }
 
-export default User;
+export default ApplyBook;

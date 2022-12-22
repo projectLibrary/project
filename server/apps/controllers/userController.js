@@ -6,6 +6,17 @@ const { Issuedbooks } = require('../../data/models');
 const { Feedback } = require('../../data/models');
 
 
+
+//get all avilable books from
+getAllBooks = async (req, res) => {
+    const availability = "Available"
+    const books = await Books.findAll({
+        where:{availability: availability}
+    }        
+     );
+    res.json(new ResponseModel(books));
+}
+
 // Get user profile
 getUserProfile = async (req, res) => {
     console.log(req.user);
@@ -28,10 +39,12 @@ getMyBook = async (req, res) => {
     console.log(req.user);
     const Mybooks = await Issuedbooks.findAll(
         {
-            where:
-                { userId: req.user.id }
+            
+            where:{ userId: req.user.id },
+            include: Books
         });
     res.json(new ResponseModel(Mybooks));
+    console.log(Mybooks);
 }
 
 //feedback creation
@@ -52,60 +65,69 @@ feedbackCreate = async (req, res) => {
     }
 
 }
-
+//apply book get 
+getOneBookDetails = async (req, res) => {
+    const id = req.params.id;
+    const books = await Books.findOne({
+        where: {id: id}
+    });
+    console.log(books);
+    res.json(new ResponseModel(books));
+}
 //apply books
 applyBook = async (req, res, next) => {
-    const bookId = req.params.id;
-    const returnDate = null;
+    const bookId = req.body.bookId;
+    const userCategory = req.body.userCategory;
+    console.log(bookId);
+    
+    
     //finding count of non-returned books of the user
-    const book= await Books.findOne(
-        {
-         where:{id:bookId}
-        });
+    const book = await Books.findOne(
+    {
+        where:{id:bookId}
+    });
     var Count = await Issuedbooks.count(
         {
             where:
             {
-                id: req.user.id,
-                returnDate: returnDate
+                userId: req.user.id,
+                returnDate: null
             }
         });
-    console.log(Count);
+        console.log(Count);
     if (Count > 3) {
-        return res.status(400)
-            .json(new ResponseModel((null, null, ['User book limit exceeded'])));
-    }
+       return res.status(400)
+       .json(new ResponseModel((null, null, ['User book limit exceeded'])));
+    }    
     else {
-        const { bookname, userCategory, issuedDate, } = req.body;
+        const issuedDate = (new Date());
         //calculating expected date
         var date = new Date(issuedDate);
         var copy = new Date(date);
         copy.setUTCDate(date.getDate() + 10);
         console.log(date);
-        console.log(copy)
+        console.log(copy);
         //adding issuedbook details to the Database
         var ib = await Issuedbooks.create({
-            bookname: book.bookname,
-            userCategory: userCategory,
-            issuedDate: issuedDate,
-            expectedreturnDate: copy,
-            userId: req.user.id,
-            bookId: bookId,
+                userCategory: userCategory,
+                issuedDate: issuedDate,
+                expectedreturnDate:copy, 
+                userId: req.user.id,
+                bookId: bookId,
 
-        });
-        //changing the book status as Not available
-        await Books.update(
-            {
-                availability: "Not available"
-            },
-            {
-                where: { id: req.params.id }
-            }
-        )
-    }
-    res.json(new ResponseModel(ib));
-}
+            });
+            //changing the book status as Not available
+                await Books.update(
+                    {
+                        availability:"Not available"
+                    },
+                    {
+                        where: {id: bookId}
+                    }
+                )
+            }            
+            res.json(new ResponseModel(ib));
+        }     
+            
 
-
-
-module.exports = { getUserProfile, getMyBook, feedbackCreate, applyBook }
+module.exports = { getUserProfile, getMyBook, feedbackCreate, applyBook,getOneBookDetails,getAllBooks }

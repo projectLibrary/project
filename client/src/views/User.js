@@ -20,12 +20,6 @@ import {
 } from "reactstrap";
 
 
- 
-let data = {
-  name:"abishek",
-  age:'21'
-}
-
 function User() {
   const [contacts, setContacts] = useState([]);
 
@@ -45,7 +39,7 @@ function User() {
           <Col md="8">
             <Card className="card-user">
               <CardHeader>
-                <CardTitle tag="h5">Edit Profile</CardTitle>
+                <CardTitle tag="h5">Profile</CardTitle>
               </CardHeader>
               <CardBody>
                 <Form>
@@ -109,13 +103,12 @@ function User() {
                  
                   <Row>
                     <div className="update ml-auto mr-auto">
-                      <Button
+                      {/* <Button
                         className="btn-round"
                         color="primary"
-                        type="submit"
-                      >
+                        type="submit" >
                         Update Profile
-                      </Button>
+                      </Button> */}
                     </div>
                   </Row>
                 </Form>

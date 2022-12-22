@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from 'react'
 
 import { getAllBooks } from '../Services/DashboardService'
+
 import MovieCard from "./bookCard";
 import SearchIcon from "./search.svg";
 import "./app.css";
@@ -20,8 +21,6 @@ function Dashboard() {
 		});
 	}, []);
 
-
-
 	const [searchTerm, setSearchTerm] = useState("");
 	const [movies, setMovies] = useState([]);
 
@@ -35,7 +34,9 @@ function Dashboard() {
 
 		setMovies(data.Search);
 	};
-
+const redirect=()=>{
+	window.Location.href="/bookapply"
+}
 	return (
 		<div className="app">
 			<h1>GET YOUR BOOK</h1>
@@ -54,7 +55,7 @@ function Dashboard() {
 			</div>
 
 			{books?.length > 0 ? (
-				<div className="container">
+				<div className="container" >
 					{books.map((book, index) => (
 						<MovieCard movie={book} key={index}/>
 					))}

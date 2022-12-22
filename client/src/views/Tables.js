@@ -45,7 +45,7 @@ function Tables() {
   const getRow = (contact, index)=>{
     return (
         <tr key={index}>
-            <td>{contact.bookname}</td>
+            <td>{contact.Book.bookname}</td>
             <td>{contact.issuedDate}</td>
             <td>{contact.returnDate}</td>
             {/* <td>{contact.phone}</td> */}
@@ -72,7 +72,7 @@ function Tables() {
                       <th> Book Name</th>
                       <th>Issued Date</th>
                       <th>Return Date</th>
-                      <th className="text-right">Details</th>
+                
                     </tr>
                   </thead>
                   <tbody>
