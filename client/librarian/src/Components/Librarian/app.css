@@ -4,7 +4,7 @@
     background-color: black;
     color: white;
     width: 650px;
-    height: 430px;
+    height: 470px;
     border-radius: 1em;
     margin-top: 50px;
     padding: 30px;
@@ -105,4 +105,19 @@
   .form-control{
     height: 50px;
   }
-     
+     .Addbutton{
+      height: 50px;
+      background-color: #e1ebee;
+      border-radius: 10px;
+      border: none;
+      color: black;
+      padding: 15px 32px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      transition-duration: 0.4s;
+      float: right;
+      font-weight: bold;
+      font-size: 22px;
+     }

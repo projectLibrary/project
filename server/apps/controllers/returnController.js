@@ -6,7 +6,7 @@ const { Latefee } = require('../../data/models');
 const { Books } = require('../../data/models');
 const { Issuedbooks } = require('../../data/models');
 
-module.exports.returnBookGet=async (req, res, next) => {
+returnBookGet=async (req, res, next) => {
     const id=req.params.id;
     const Ib = await Issuedbooks.findOne(
         { where:
@@ -15,11 +15,11 @@ module.exports.returnBookGet=async (req, res, next) => {
 }
 
 //returning book and generating fine
-module.exports.returnBookPost = async (req, res, next) => {
+returnBookPost = async (req, res, next) => {
     const id=req.body.issuedId;
     const returnDate=req.body.returnDate;
     console.log(returnDate);
-    const userId=req.user.id
+    //const userId=req.user.id
     const Ib = await Issuedbooks.findOne(
         { where:
             { id:id}
@@ -51,7 +51,7 @@ module.exports.returnBookPost = async (req, res, next) => {
     //latfee db
     var fee= await Latefee.create({
         issuedId:id,
-        userId:userId,
+        userId:Ib.userId,
         delayDays:days_difference,
         fee:fine
     });
@@ -63,7 +63,7 @@ module.exports.returnBookPost = async (req, res, next) => {
 }
 
 //displaying fine
-module.exports.lateFee = async (req, res, next) => {
+lateFee = async (req, res, next) => {
     const id=req.params.id
     console.log("Idddddddd: ", id);
     const fee = await Latefee.findOne(
@@ -75,7 +75,7 @@ module.exports.lateFee = async (req, res, next) => {
 
 //fee payment
 
-module.exports.lateFeePost = async (req,res,next)=>{
+lateFeePost = async (req,res,next)=>{
     const feeId =req.body.id;
     console.log("id",feeId)
     const isPayed=req.body.isPayed
@@ -89,3 +89,5 @@ module.exports.lateFeePost = async (req,res,next)=>{
         }
     })
 }
+
+module.exports = { returnBookGet, lateFeePost, lateFee, returnBookPost }

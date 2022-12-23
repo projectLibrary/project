@@ -12,13 +12,12 @@ dotEnv.config();
 
 const app = express();
 
-
 app.use(cors({origin: '*'}));
 app.use(bodyParser.json({inflate: true}));
 app.use(authMiddleware);
 app.use('/api/v1',loginRoutes);
 app.use('/api/user',userRoutes);
-app.use('/api/user/librarian', librarianRoutes);
+app.use('/api/v1/user/librarian', librarianRoutes);
 
 
 

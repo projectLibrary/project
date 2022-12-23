@@ -27,6 +27,13 @@ function App() {
   
         </nav>
       </header>
+      <div className="footer" style={{ position: "absolute", bottom: "0", textAlign: "end" }}>
+
+        <img src="https://static.vecteezy.com/system/resources/previews/005/349/020/non_2x/horizontal-banner-with-childrens-and-books-boys-and-girls-are-standing-near-books-books-for-childrens-and-kids-i-love-reading-children-s-book-day-festival-poster-for-store-shop-library-vector.jpg" class="img-fluid" alt="" style={{ height: "100px", width: "900px", marginLeft:"300px" }} />
+
+       
+
+      </div>
       <main>
         <Outlet></Outlet>
       </main>

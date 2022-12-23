@@ -48,13 +48,13 @@ const Users = sequelize.define('User', {
 
     otp: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
 
     },
 
     status: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
 
     password: {

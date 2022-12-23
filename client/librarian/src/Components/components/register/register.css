@@ -1,0 +1,24 @@
+body {
+  /* background: linear-gradient(90deg, white, black) */
+
+  /* background-image: url("//images.pexels.com/photos/1370295/pexels-photo-1370295.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"); */
+}
+
+.logincontainer{
+  opacity: 1;
+  border: 2px;
+  border-style: solid;
+  min-height: 82vh;
+  max-height: 110vh;
+  width: 35vw;
+  margin-top: 55px;
+  margin-left: 470px;
+  background-color: #bfeaf5;
+  padding-left: 70px;
+  padding-top: 60px;
+  border-radius: 20px;
+  padding-right: 70px;
+}
+/* .form-control {
+  position: sticky;
+} */

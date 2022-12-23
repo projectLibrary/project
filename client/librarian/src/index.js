@@ -3,34 +3,31 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import About from './Components/Public/About';
-import Home from './Components/Public/Home';
-import Feedback from './Components/Public/Feedback';
 import Books from './Components/Librarian/Books';
 import AddBook from './Components/Librarian/AddBook';
-import Contacts from './Components/User/Contacts';
 import Users from './Components/Librarian/Userlist';
 import Issued from './Components/Librarian/Issued';
 import ViewFeedback from './Components/Librarian/ViewFeedback';
 import CurrentIssued from './Components/Librarian/CurrentIssued';
 import Return from './Components/Librarian/Return';
 import Latefee from './Components/Librarian/Latefee';
+import Login from './Components/components/login/login';
+import Register from './Components/components/register/register';
 
 
 const router = createBrowserRouter([
   { path: "/", element: <App/>, children: [
-    { path: "/", element: <Home/>},
-    { path: "/about", element: <About/>},
-    { path: "/feedback", element: <Feedback/>},
+    // { path: "/", element: <Home/>},
+    // { path: "/about", element: <About/>},
+    // { path: "/feedback", element: <Feedback/>},
     
     
   ]},
  
   {
     path: '/user', element: <App/>, children: [
-      { path: '/user', element: <Contacts/> },
+      // { path: '/user', element: <Contacts/> },
     ]
   },
   {
@@ -45,7 +42,9 @@ const router = createBrowserRouter([
       { path: "/librarian/lateFee/:id", element: <Latefee/>},
       
     ]
-  }
+  },
+  {path: '/login', element: <Login/>},
+  {path: '/register', element: <Register/>},
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

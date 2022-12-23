@@ -2,11 +2,12 @@ import React from "react";
 import "./app.css";
 import { addBook } from '../../Services/AddBookService';
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Navigate, useNavigate } from "react-router-dom"
 import * as yup from "yup";
 
 
 function AddBook() {
-
+    const navigate = useNavigate();
     return (
     
         <div>
@@ -136,8 +137,8 @@ function AddBook() {
                             <td></td>
                             <td>
                                 <button
-                                    className="button" type="submit" >
-                                    submit
+                                    className="Addbutton" type="submit" >
+                                    Submit
                                 </button>
                             </td>
                         </tr>
