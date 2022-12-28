@@ -34,8 +34,7 @@ function Users() {
             <td>{user.email}</td>
             <td>{user.phone}</td>
             <td>{user.address}</td>
-            <td>{user.role}</td>
-            <td>{user.status}</td>
+          
         </tr>
     )
 }
@@ -52,8 +51,7 @@ function Users() {
                         <th scope='col'>Email</th>
                         <th scope='col'>Phone</th>
                         <th scope='col'>Address</th>
-                        <th scope='col'>Role</th>
-                        <th scope='col'>Status</th>
+                       
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>

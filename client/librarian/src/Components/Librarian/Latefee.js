@@ -24,9 +24,10 @@ function Latefee() {
             isPayed: isPaid,
             id: params.id
         };
-        await lateFeePost(dataToSend);
         console.log("Hello");
-        alert("Payed successfully");
+          lateFeePost(dataToSend);
+        
+        alert("Paid successfully");
         navigate(`/librarian/bookIndex`)
     }
 

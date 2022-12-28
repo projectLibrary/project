@@ -9,8 +9,15 @@ import {
 } from 'mdb-react-ui-kit';
 import {useState, useEffect} from 'react'
 import { getAllBooks } from '../../Services/DisplayBooksService'
-
+import {deleteBook} from '../../Services/AddBookService';
 function Books() {
+  const   redirect=(id)=>{
+    console.log("in redirect");
+    console.log(id);
+    deleteBook(id);
+    window.location.href=`/librarian/bookindex`
+
+  }
   const [books, setBook] = useState([]);
 
    console.log("hi");
@@ -33,7 +40,8 @@ function Books() {
             <td>{book.Author.firstname}  {book.Author.lastname}</td>
             <td>{book.Categorie.name}</td>
             <td>{book.availability}</td>
-            <td colSpan={2}> <MDBBtn color='info'>Update</MDBBtn> <MDBBtn color='danger'>Delete</MDBBtn></td>
+            <td> 
+            <MDBBtn style={{height:"40px", width:"100px"}} color='danger'onClick={()=>redirect(book.id)}>Delete</MDBBtn></td>
         </tr>
     )
 }

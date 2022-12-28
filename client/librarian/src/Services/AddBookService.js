@@ -5,5 +5,12 @@ const addBook = async (data)=>{
     console.log(response);
     return response;
 }
+const deleteBook = async (id)=>{
+    console.log("in delete");
+    console.log(id);
+    await axios.get('/user/librarian/deleteBook/'+id);
+    console.log("after del");
 
-export {addBook}
+}
+
+export {addBook,deleteBook}

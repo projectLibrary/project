@@ -29,11 +29,18 @@ function ApplyBook() {
   const history = useHistory();
 
  async function saveBookRequest(e) {
-    await applyBook({
+    const result = await applyBook({
       userCategory: orderFor,
       bookId: params.id
     });
+    console.log("hii",result);
+    if (result.data.success) {
     alert("Applied successfully");
+   
+    }
+    else {
+      alert(result.data.errors[0]);
+    }
     history.push('/admin/tables');
   }
 

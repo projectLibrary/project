@@ -1,25 +1,12 @@
 import React from "react";
 import { useState, useEffect } from 'react'
-
- 
-
 import { getAllBooks } from '../Services/DashboardService'
-
- 
-
 import MovieCard from "./bookCard";
 import SearchIcon from "./search.svg";
 import "./app.css";
 
- 
-
 const API_URL = "http://localhost/api/user/bookIndex";
-
- 
-
 function Dashboard() {
-
- 
 
     const [books, setBooks] = useState([]);
     // console.log("hi");
@@ -30,26 +17,16 @@ function Dashboard() {
             setBooks(data.data.data);
         });
     }, []);
-
- 
-
     const [searchTerm, setSearchTerm] = useState("");
     const [movies, setMovies] = useState([]);
-
- 
 
     useEffect(() => {
         searchMovies("Batman");
     }, []);
 
- 
-
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
-
- 
-
         setMovies(data.Search);
     };
 const redirect=()=>{
@@ -61,7 +38,7 @@ const redirect=()=>{
 
  
 
-            <div className="search">
+            {/* <div className="search">
 <input
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -72,7 +49,7 @@ const redirect=()=>{
                     alt="search"
                     onClick={() => searchMovies(searchTerm)}
                 />
-</div>
+</div> */}
 
  
 
@@ -92,5 +69,4 @@ const redirect=()=>{
 };
 
  
-
 export default Dashboard;;

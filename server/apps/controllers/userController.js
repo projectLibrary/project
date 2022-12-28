@@ -95,9 +95,9 @@ applyBook = async (req, res, next) => {
             }
         });
         console.log(Count);
-    if (Count > 3) {
-       return res.status(400)
-       .json(new ResponseModel((null, null, ['User book limit exceeded'])));
+    if (Count >= 3) {
+       return res.status(200)
+       .json(new ResponseModel(null, null, ['User book limit exceeded']));
     }    
     else {
         const issuedDate = (new Date());

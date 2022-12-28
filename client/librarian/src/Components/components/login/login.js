@@ -1,11 +1,12 @@
 import { React, useState } from "react";
 import { login, loginWithOtp } from "../../services/accountsService";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../register/register.css";
 import {Alert} from 'react-bootstrap'
 function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("")
   const [otp, setOtp] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
@@ -109,6 +110,17 @@ function Login() {
                 Submit
                 <i className="button__icon fas fa-chevron-right"></i>
               </button>
+              <p style={{ fontWeight: "bold", paddingTop: "10px" }}>
+
+              Not a User{" "}
+
+              <Link to="/register" style={{ textDecoration: "none" }}>
+
+  Sign-Up
+
+</Link>
+
+</p>
               {/* <button className="btn btn-info" ahref = '/register'>Sign-Up</button> */}
             </div>
 
@@ -117,7 +129,7 @@ function Login() {
             )}
           </form>
         </div>
-        <button className="btn btn-info" ahref = '/register'>Sign-Up</button>
+        {/* <button className="btn btn-info" ahref = '/register'>Sign-Up</button> */}
         {/* <div className="screen__background">
           <span className="screen__background__shape screen__background__shape4"></span>
           <span className="screen__background__shape screen__background__shape3"></span>

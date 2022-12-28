@@ -13,7 +13,10 @@ function App() {
           <Link to={'/librarian/addBook'}>Add Books</Link>
           <Link to={'/librarian/users'}>All Users</Link>
           <Link to={'/librarian/feedback'}>Feedbacks</Link>
-          <Link to={'/librarian/feedback'}>Logout</Link>
+          <button className="btn btn-success" onClick={() => {
+          localStorage.removeItem("token");
+          window.location.replace("/");
+          }}>Logout</button>
         <DropdownButton style={{ backgroundColor:"#282c34",color:"white", fontWeight:"bold", marginLeft:"20px",marginTop:"0px"}} title="Books">
 
         <Dropdown.Item key="1" style={{color:"black", backgroundColor:"#282c34", fontWeight:"bold"}}>
