@@ -1,14 +1,16 @@
+
 const ResponseModel = require('../utilities/responseModel');
-const tokenHandler = require('../utilities/tokenHandler');
+const tokenHandler = require('../utilities/tokenHandlers');
+
+
 
 module.exports = (req, res, next) => {
-    if(!req.url.startsWith('/api/v1/user')){
+    if(!req.url.startsWith('/api/user')){
         return next();
     }
-
+    console.log(req.url);
     let token = req.headers['authorization'];
     token = token ? token.split(' ')[1] : null;
-
     if(!token){
         return res.status(401)
             .json(new ResponseModel(null, null, ['Unauthorized.']));
